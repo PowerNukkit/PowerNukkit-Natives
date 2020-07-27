@@ -4,8 +4,44 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>natives</artifactId>
-    <groupId>com.nukkitx</groupId>
-    <version>1.0.2</version>
+    <groupId>org.powernukkit</groupId>
+    <version>1.0.2-PN-ubuntu20.04</version>
+    <name>PowerNukkit Natives</name>
+    <description>Provides native ciphers to quickly hash data using AES and Sha256</description>
+    <url>https://powernukkit.org</url>
+    <inceptionYear>2020</inceptionYear>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/PowerNukkit/PowerNukkit-Natives/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/PowerNukkit/PowerNukkit-Natives.git</connection>
+        <developerConnection>scm:git:ssh://github.com:PowerNukkit/PowerNukkit-Natives.git</developerConnection>
+        <url>https://github.com/PowerNukkit/PowerNukkit-Natives</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>PowerNukkit</id>
+            <organization>PowerNukkit</organization>
+            <organizationUrl>https://powernukkit.org</organizationUrl>
+        </developer>
+        <developer>
+            <id>CloudburstMC</id>
+            <organization>CloudburstMC</organization>
+            <organizationUrl>https://cloudburstmc.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -28,15 +64,10 @@
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>nukkitx-releases</name>
-            <url>https://repo.nukkitx.com/release</url>
+            <id>powernukkit-releases</id>
+            <name>powernukkit-releases</name>
+            <url>https://api.bintray.com/maven/powernukkit/powernukkit/powernukkit-natives</url>
         </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>nukkitx-snapshots</name>
-            <url>https://repo.nukkitx.com/snapshot</url>
-        </snapshotRepository>
     </distributionManagement>
 
     <dependencies>
@@ -60,7 +91,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <compilerVersion>11</compilerVersion>
                     <fork>true</fork>
@@ -75,6 +106,45 @@
                         <exclude>**/package-info.java</exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration> <!-- add this to disable checking -->
+                    <source>8</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
             </plugin>
         </plugins>
     </build>
